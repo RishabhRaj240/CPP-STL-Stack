@@ -1,43 +1,31 @@
-#include <iostream>
-#include <vector>
-#include <string>
-#include <numeric>
-#include <algorithm>
+#include<iostream>
+#include<stack>
+using namespace std;
 
-class TaskRunner {
-private:
-    std::string appName;
-    std::vector<std::string> steps;
+void explainStack() {
+	stack<int> st;
+	st.push(1); // {1}
+	st.push(2); // {2, 1}
+	st.push(3); // {3, 2, 1}
+	st.push(3); // {3, 3, 2, 1}
+	st.emplace(5); // {5, 3, 3, 2, 1}
 
-public:
-    TaskRunner(std::string name) : appName(std::move(name)) {}
+	cout << st.top() << endl; // prints 5 "** st[2] is invalid **"
 
-    void addStep(const std::string& step) {
-        steps.push_back(step);
-    }
+	st.pop(); // st looks like {3, 3, 2, 1}
 
-    void execute() const {
-        std::cout << "========================================" << std::endl;
-        std::cout << "🚀 Running: " << appName << std::endl;
-        std::cout << "========================================" << std::endl;
+	cout << st.top() << endl; // 3
 
-        for (size_t i = 0; i < steps.size(); ++i) {
-            std::cout << " [" << (i + 1) << "/" << steps.size() << "] " << steps[i] << std::endl;
-        }
+	cout << st.size() << endl; // 4
 
-        std::cout << "\n✨ Execution completed successfully!" << std::endl;
-    }
-};
+	cout << st.empty() << endl;
 
-int main(int argc, char* argv[]) {
-    std::cout << "Starting C++ Application..." << std::endl;
+	stack<int>st1, st2;
+	st1.swap(st2);
+}
 
-    TaskRunner runner("RepoPilot C++ Engine");
-    runner.addStep("Initialize core telemetry");
-    runner.addStep("Parse command line arguments");
-    runner.addStep("Execute parallel workload");
-    runner.addStep("Clean up system resources");
+int main() {
+	explainStack();
 
-    runner.execute();
-    return 0;
+	return 0;
 }
