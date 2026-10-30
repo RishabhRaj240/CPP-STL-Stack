@@ -1,6 +1,6 @@
 <div align="center">
 
-# modern-cpp-app
+# CPP-STL-Stack
 
 ### *High performance C++17 application utilizing STL algorithms, structured classes, and a standard Makefile.*
 
